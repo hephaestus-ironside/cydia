@@ -2904,7 +2904,11 @@ struct PackageNameOrdering :
                 return @"REINSTALL";
             else*/ switch (state.Status) {
                 case -1:
+#ifndef __arm__
                     return [database_ cache].Policy->GetCandidateVer(iterator_)==state.CandidateVerIter([database_ cache])?@"UPGRADE":@"DOWNGRADE";
+#else
+                    return @"DOWNGRADE";
+#endif
                 case 0:
                     return @"INSTALL";
                 case 1:
@@ -4854,7 +4858,11 @@ bool DepSubstrate(const pkgCache::VerIterator &iterator) {
             else if (!state.Delete() && (state.iFlags & pkgDepCache::ReInstall) == pkgDepCache::ReInstall)
                 [reinstalls addObject:name];
             // XXX: move before previous if
+#ifndef __arm__
             else if (state.Upgrade() || (state.Downgrade() && state.CandidateVerIter(cache) == cache.Policy->GetCandidateVer(iterator)))
+#else
+            else if (state.Upgrade())
+#endif
                 [upgrades addObject:name];
             else if (state.Downgrade())
                 [downgrades addObject:name];
