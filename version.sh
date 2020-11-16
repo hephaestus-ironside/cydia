@@ -6,7 +6,7 @@ else
     flags=("$@")
 fi
 
-version=1.1.33
+version=1.1.36-1
 
 if grep '#define ForRelease 0' MobileCydia.mm &>/dev/null; then
     version=${version}~srk

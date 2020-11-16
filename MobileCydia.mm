@@ -8545,7 +8545,7 @@ _end
 
 - (void) _uicache {
     _trace();
-    system("/usr/bin/uicache");
+    system("/usr/bin/uicache -a");
     _trace();
 }
 
