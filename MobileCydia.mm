@@ -4484,7 +4484,7 @@ class CydiaLogCleaner :
 - (NSNumber *) du:(NSString *)path {
     NSNumber *value(nil);
 
-    FILE *du(popen([[NSString stringWithFormat:@"/usr/libexec/cydia/cydo /usr/libexec/cydia/du -ks %@", ShellEscape(path)] UTF8String], "r"));
+    FILE *du(popen([[NSString stringWithFormat:@"/usr/libexec/cydia/cydo /usr/bin/du -ks %@", ShellEscape(path)] UTF8String], "r"));
     if (du != NULL) {
         char line[1024];
         while (fgets(line, sizeof(line), du) != NULL) {
@@ -9484,6 +9484,9 @@ int main(int argc, char *argv[]) {
     _config->Set("Dir::Log", logs);
 
     _config->Set("Dir::Bin::dpkg", "/usr/libexec/cydia/cydo");
+
+    _config->Set("Dpkg::Options::", "--force-confdef");
+    _config->Set("Dpkg::Options::", "--force-confnew");
     /* }}} */
     /* Color Choices {{{ */
     space_ = CGColorSpaceCreateDeviceRGB();

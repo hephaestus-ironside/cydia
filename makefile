@@ -24,7 +24,7 @@ sdk := $(HOME)/cctools/SDK/iPhoneOS.sdk
 mac := $(HOME)/cctools/SDK/MacOSX.sdk
 else ifeq ($(shell uname -s),Darwin)
 gxx := $(shell xcrun --sdk $(kind) -f g++)
-sdk := $(THEOS)/sdks/iPhoneOS13.7.sdk
+sdk := $(THEOS)/sdks/iPhoneOS14.4.sdk
 mac := $(shell xcodebuild -sdk macosx -version Path)
 else
 $(error Use mac or linux)
@@ -305,7 +305,7 @@ postinst: postinst.mm CyteKit/stringWith.mm CyteKit/stringWith.h CyteKit/UCPlatf
 	@ldid -T0 -Sgenent.xml $@
 
 debs/cydia_$(version)_iphoneos-arm.deb: MobileCydia preinst postinst cydo $(images) $(shell find MobileCydia.app) cydia.control Library/startup $(shell find MobileCydia.app -name '*.strings')
-	fakeroot rm -rf _
+	fakeroot grm -rf _
 	mkdir -p _/var/lib/cydia
 
 	mkdir -p _/etc/apt
@@ -314,7 +314,7 @@ debs/cydia_$(version)_iphoneos-arm.deb: MobileCydia preinst postinst cydo $(imag
 
 	mkdir -p _/usr/libexec
 	cp -a Library _/usr/libexec/cydia
-	cp -a sysroot/usr/bin/du _/usr/libexec/cydia
+	#cp -a sysroot/usr/bin/du _/usr/libexec/cydia
 
 	cp -a cydo _/usr/libexec/cydia
 
@@ -337,9 +337,9 @@ debs/cydia_$(version)_iphoneos-arm.deb: MobileCydia preinst postinst cydo $(imag
 
 	find _ -exec touch -t "$$(date -j -f "%s" +"%Y%m%d%H%M.%S" "$$(git show --format='format:%ct' | head -n 1)")" {} ';'
 
-	fakeroot chown -R 0 _
-	fakeroot chgrp -R 0 _
-	fakeroot chmod 6755 _/usr/libexec/cydia/cydo
+	fakeroot gchown -R 0 _
+	fakeroot gchgrp -R 0 _
+	fakeroot gchmod 6755 _/usr/libexec/cydia/cydo
 
 	mkdir -p debs
 	ln -sf debs/cydia_$(version)_iphoneos-arm.deb Cydia.deb

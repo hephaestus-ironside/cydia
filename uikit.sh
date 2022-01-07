@@ -1,5 +1,5 @@
 #!/bin/bash
-if gsed &>/dev/null; then
+if which gsed &>/dev/null; then
 SED=gsed
 else
 SED=sed
