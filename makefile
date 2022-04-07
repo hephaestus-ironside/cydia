@@ -24,7 +24,7 @@ sdk := $(HOME)/cctools/SDK/iPhoneOS.sdk
 mac := $(HOME)/cctools/SDK/MacOSX.sdk
 else ifeq ($(shell uname -s),Darwin)
 gxx := $(shell xcrun --sdk $(kind) -f g++)
-sdk := $(THEOS)/sdks/iPhoneOS14.4.sdk
+sdk := $(THEOS)/sdks/iPhoneOS14.5.sdk
 mac := $(shell xcodebuild -sdk macosx -version Path)
 else
 $(error Use mac or linux)

@@ -1271,7 +1271,7 @@ class SourceStatus :
     if (package_ == nil)
         title = nil;
     else if (Package *package = [[Database sharedInstance] packageWithName:package_])
-        title = [package name];
+        title = [(id)package name]; // I hate this
     else
         title = package_;
 
@@ -5146,6 +5146,8 @@ bool DepSubstrate(const pkgCache::VerIterator &iterator) {
     if ((self = [super init]) != nil) {
         database_ = database;
         self.delegate = delegate;
+        if (@available(iOS 13.0, *))
+            [self setModalInPresentation:YES];
 
         [database_ setProgressDelegate:self];
 

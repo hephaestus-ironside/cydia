@@ -1,7 +1,6 @@
-0) use a Mac (I'm sorry, I really am)
-1) install the official Apple iOS SDK
-2) install Fink (the only sane choice)
-3) activate Fink (. /sw/bin/init.sh)
-4) sudo fink install bash ldid sed tar wget xz
-5) run ./sysroot.sh and wait a bit
-6) type "make" to compile the executable
+1. mkdir -p sysroot/usr/include/{WebCore,CoreFoundation,SystemConfiguration}
+2. ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/IOKit.framework/Headers sysroot/usr/include/IOKit
+3. wget https://opensource.apple.com/source/CF/CF-550/CFUniChar.h https://opensource.apple.com/source/WebCore/WebCore-658.28/wak/WebCoreThread.h
+4. mv WebCoreThread.h sysroot/usr/include/WebCore
+5. mv CFUniChar.h sysroot/usr/include/CoreFoundation
+6. sed 's|API_UNAVAILABLE(.*)||' ${THEOS}/sdks/iPhoneOS14.5.sdk/System/Library/Frameworks/SystemConfiguration.framework/Headers/SCDynamicStoreCopySpecific.h > sysroot/usr/include/SystemConfiguration/SCDynamicStoreCopySpecific.h
