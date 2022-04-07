@@ -93,7 +93,7 @@ int main(int argc, const char *argv[]) {
     [[NSString stringWithFormat:@
         "deb http://apt.thebigboss.org/repofiles/cydia/ stable main\n"
         "deb https://repo.chariz.com/ ./\n"
-        "deb https://repo.dynastic.co/ ./\n"
+        "deb https://havoc.app/ ./\n"
     ] writeToFile:@ CYDIA_LIST atomically:YES];
 
     if (access(NewLibrary_ Cytore_, F_OK) != 0 && errno == ENOENT) {

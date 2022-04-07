@@ -9397,10 +9397,8 @@ int main(int argc, char *argv[]) {
 
     if ([Version_ unsignedIntValue] == 0) {
         CydiaAddSource(@"http://apt.thebigboss.org/repofiles/cydia/", @"stable", [NSMutableArray arrayWithObject:@"main"]);
-        CydiaAddSource(@"http://apt.modmyi.com/", @"stable", [NSMutableArray arrayWithObject:@"main"]);
-        CydiaAddSource(@"http://cydia.zodttd.com/repo/cydia/", @"stable", [NSMutableArray arrayWithObject:@"main"]);
         CydiaAddSource(@"https://repo.chariz.com/", @"./");
-        CydiaAddSource(@"https://repo.dynastic.co/", @"./");
+        CydiaAddSource(@"https://havoc.app/", @"./");
 
         Version_ = [NSNumber numberWithUnsignedInt:1];
 
